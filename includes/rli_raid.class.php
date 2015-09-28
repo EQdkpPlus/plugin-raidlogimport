@@ -275,8 +275,8 @@ if(!class_exists('rli_raid')) {
 				if(isset($rai['bosskill_add'])) {
 					$this->new_bosskill($ky, $rai['bosskill_add']);
 				}
-				$begin = $this->time->user_date($rai['begin'], true, false, false, function_exists('date_create_from_format'));
-				$end = $this->time->user_date($rai['end'], true, false, false, function_exists('date_create_from_format'));
+				$begin = $this->time->date_for_user($this->user->id, $rai['begin'], true, false, false, function_exists('date_create_from_format'));
+				$end = $this->time->date_for_user($this->user->id, $rai['end'], true, false, false, function_exists('date_create_from_format'));
 				$this->tpl->assign_block_vars('raids', array(
 					'COUNT'     => $ky,
 					'START_DATE'=> ($with_form) ? $this->jquery->Calendar("raids[".$ky."][start_date]", $begin, '', array('id' => 'raids_'.$ky.'_start_date', 'class' => 'start_date', 'timepicker' => true, 'class' => 'class="input"', 'onclose' => ' $( "#raids['.$ky.'][start_date]" ).datepicker( "option", "minDate", selectedDate );')) : $begin,
